@@ -1,5 +1,5 @@
-const express = require("express");
-morgan = require("morgan");
+const express = require("express"),
+  morgan = require("morgan");
 
 const app = express();
 
@@ -47,7 +47,7 @@ app.get("/movies", (req, res) => {
   res.json(topMovies);
 });
 
-app.use(express.static("Public"));
+app.use(express.static("public"));
 
 //Error handling
 app.use((err, req, res, next) => {
