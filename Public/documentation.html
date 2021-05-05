@@ -5,14 +5,152 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1 shrink-to-fit=no">
   <title>myFlix App Documentation</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body{
+        box-sizing: border-box;
+        margin: 20px;
+    }
+  </style>
 </head>
 
 <body>
     <h1>myFlix App Documentation</h1>
+    
     <h2>Objective</h2>
     <p>To build the server-side component of a “movies” web application. The web
         application will provide users with access to information about different
         movies, directors, and genres. Users will be able to sign up, update their
         personal information, and create a list of their favorite movies.</p>
+    
+    <h2>Endpoint Documentation</h2>
+    <table class="table table-bordered">
+      <thead class="thead-dark">
+        <tr>
+            <th scope="col">Request</th>
+            <th scope="col">URL</th>
+            <th scope="col">HTTP Method</th>
+            <th scope="col">Query Parameters</th>
+            <th scope="col">Request Body Data Format</th>
+            <th scope="col">Response Body Data Format</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Return a list of ALL movies to the user</td>
+          <td>/movies</td>
+          <td>GET</td>
+          <td>None</td>
+          <td>None</td>
+          <td>A JSON object holding data about all of the movies</td>
+        </tr>
+        <tr>
+          <td>Return data about a single movie by title to the user</td>
+          <td>/movies/[title]</td>
+          <td>GET</td>
+          <td>/movies/:title</td>
+          <td>None</td>
+          <td>A JSON object holding data about the requested movie, structed like:<br>
+            <div style="text-indent: 1em;">{</div>
+              <div style="text-indent: 2em;">title : "The Shawshank Redemption"</div>
+              <div style="text-indent: 2em;">description : "Framed in the 1940s for the double murder of his wife and her lover, upstanding banker Andy Dufresne begins a new life at the Shawshank prison, where he puts his accounting skills to work for an amoral warden. During his long stretch in prison, Dufresne comes to be admired by the other inmates -- including an older prisoner named Red -- for his integrity and unquenchable sense of hope."</div>
+              <div style="text-indent: 2em;">genre : {</div>
+                <div style="text-indent: 3em;">drama,</div>
+                <div style="text-indent: 3em;">crime</div>
+                <div style="text-indent: 3em;">}</div>
+              <div style="text-indent: 2em;">director : "Frank Darabont"</div>
+              <div style="text-indent: 2em;">imageURL : "movieURL"</div>
+              <div style="text-indent: 2em;">featured : "True"</div>
+              <div style="text-indent: 1em;">}</div>
+        </tr>
+        <tr>
+          <td>Return data about a genre by name/title (e.g., “Thriller”)</td>
+          <td>/movies/genres/[name]</td>
+          <td>GET</td>
+          <td>/movies/genres/:name</td>
+          <td>None</td>
+          <td>A JSON object holding data about the movie genre, structured like:<br>
+            <div style="text-indent: 1em;">{</div>
+              <div style="text-indent: 2em;">genre : "drama"</div>
+              <div style="text-indent: 2em;">genredes : "Thrillers are dark, engrossing, and suspenseful plot-driven stories. They very seldom include comedic elements."</div>
+              <div style="text-indent: 1em;">}</div></td>
+        </tr>
+        <tr>
+          <td>Return data about a director (bio, birth year, death year) by name</td>
+          <td>/movies/directors/[name]</td>
+          <td>GET</td>
+          <td>/movies/directors/:name</td>
+          <td>None</td>
+          <td>A JSON object holding data about the movie director, structured like:<br>
+            <div style="text-indent: 1em;">{</div>
+            <div style="text-indent: 2em;">name : "Frank Darabont"</div>
+            <div style="text-indent: 2em;">bio : "A lifelong horror fan who possessed great love for the genre and the works of Stephen King in particular, Frank Darabont's career as a writer and director yielded three Oscar nominations and worldwide acclaim."</div>
+            <div style="text-indent: 2em;">birth : "1959"</div>
+            <div style="text-indent: 2em;">death : ""</div>
+            <div style="text-indent: 1em;">}</div>
+        </tr>
+        <tr>
+          <td>Allow new users to register</td>
+          <td>/users</td>
+          <td>POST</td>
+          <td>None</td>
+          <td>A JSON object holding data about the user to add, structed like:<br>
+            <div style="text-indent: 1em;">{</div>
+              <div style="text-indent: 2em;">name : "name"</div>
+              <div style="text-indent: 2em;">username : "username"</div>
+              <div style="text-indent: 2em;">email : "username@email.com"</div>
+              <div style="text-indent: 1em;">}</div>
+          </td>
+          <td>A JSON object holding data about the user that was added:<br>
+            <div style="text-indent: 1em;">{</div>
+              <div style="text-indent: 2em;">name : "name"</div>
+              <div style="text-indent: 2em;">username : "username"</div>
+              <div style="text-indent: 2em;">email : "username@email.com"</div>
+              <div style="text-indent: 1em;">}</div>
+          </td>
+        </tr>
+        <tr>
+          <td>Allow users to update their user info</td>
+          <td>/users/[username]</td>
+          <td>PUT</td>
+          <td>/users/:username</td>
+          <td>None</td>
+          <td>A text message indicating that the user information has been updated</td>
+        </tr>
+        <tr>
+          <td>Allow users to add a movie to their list of favorites</td>
+          <td>/users/[username]/favorites</td>
+          <td>POST</td>
+          <td>/users/:username/favorites</td>
+          <td>A JSON object holding data about the movie to add, structed like:<br>
+            <div style="text-indent: 1em;">{</div>
+              <div style="text-indent: 2em;">title : "movie"</div>
+              <div style="text-indent: 1em;">}</div>
+          </td>
+          <td>A JSON object holding data about the movie that was added:
+            <div style="text-indent: 1em;">{</div>
+              <div style="text-indent: 2em;">title : "movie"</div>
+              <div style="text-indent: 1em;">}</div></td>
+        </tr>
+        <tr>
+          <td>Allow users to remove a movie from their list of favorites</td>
+          <td>/users/[username]/favorites/[movie]</td>
+          <td>DELETE</td>
+          <td>/users/:username/favorites/:title</td>
+          <td>None</td>
+          <td>A text message indicating the movie has been successfully removed from the list of favorites</td>
+        </tr>
+        <tr>
+          <td>Allow existing users to deregister</td>
+          <td>/users/[username]</td>
+          <td>DELETE</td>
+          <td>/users/:username</td>
+          <td>None</td>
+          <td>A test message indicating the user has been successfully removed</td>
+        </tr>
+      </tbody>
 </body>
 </html>
