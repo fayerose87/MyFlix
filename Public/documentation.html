@@ -49,47 +49,51 @@
         </tr>
         <tr>
           <td>Return data about a single movie by title to the user</td>
-          <td>/movies/[title]</td>
+          <td>/movies/[Title]</td>
           <td>GET</td>
-          <td>/movies/:title</td>
+          <td>/movies/:Title</td>
           <td>None</td>
-          <td>A JSON object holding data about the requested movie, structed like:<br>
+          <td>A JSON object holding data about the requested movie, structured like:<br>
             <div style="text-indent: 1em;">{</div>
-              <div style="text-indent: 2em;">title : "The Shawshank Redemption"</div>
-              <div style="text-indent: 2em;">description : "Framed in the 1940s for the double murder of his wife and her lover, upstanding banker Andy Dufresne begins a new life at the Shawshank prison, where he puts his accounting skills to work for an amoral warden. During his long stretch in prison, Dufresne comes to be admired by the other inmates -- including an older prisoner named Red -- for his integrity and unquenchable sense of hope."</div>
-              <div style="text-indent: 2em;">genre : {</div>
-                <div style="text-indent: 3em;">drama,</div>
-                <div style="text-indent: 3em;">crime</div>
-                <div style="text-indent: 3em;">}</div>
-              <div style="text-indent: 2em;">director : "Frank Darabont"</div>
-              <div style="text-indent: 2em;">imageURL : "movieURL"</div>
-              <div style="text-indent: 2em;">featured : "True"</div>
-              <div style="text-indent: 1em;">}</div>
+            <div style="text-indent: 2em;">"Genre": {</div>
+            <div style="text-indent: 3em;">"Name": "Drama",</div>
+            <div style="text-indent: 3em;">"Description": "Drama Films are serious presentations or stories with settings or life situations that portray realistic characters in conflict with either themselves, others, or forces of nature. A dramatic film shows us human beings at their best, their worst, and everything in-between. Each of the types of subject-matter themes have various kinds of dramatic plots."</div>
+            <div style="text-indent: 2em;">},</div>
+            <div style="text-indent: 2em;">"Director": {</div>
+            <div style="text-indent: 3em;">"Name": "Frank Darabont",</div>
+            <div style="text-indent: 3em;">"Bio": "Frank Darabont is a Hungarian-American director, producer, and screenwriter. He is best known for his film adaptations of Stephen King stories, including The Shawshank Redemption, The Green Mile, and The Mist. He also works as a producer, producing such television shows as The Walking Dead and Mob City."</div>
+            <div style="text-indent: 2em;">},</div>
+            <div style="text-indent: 2em;">"Actors": [],</div>
+            <div style="text-indent: 2em;">"_id":"60a1d6eda71ba6a3ffb9d27c",</div>
+            <div style="text-indent: 2em;">"Title": "The Shawshank Redemption",</div>
+            <div style="text-indent: 3em;">"Description": "Framed in the 1940s for the double murder of his wife and her lover, upstanding banker Andy Dufresne begins a new life at the Shawshank prison, where he puts his accounting skills to work for an amoral warden. During his long stretch in prison, Dufresne comes to be admired by the other inmates -- including an older prisoner named Red -- for his integrity and unquenchable sense of hope.",</div>
+            <div style="text-indent: 2em;">"ImagePath": "shawshank.png",</div>
+            <div style="text-indent: 2em;">"Featured": "True"</div>
+            <div style="text-indent: 1em;">}</div>
         </tr>
-        <tr>
+        <tr>""
           <td>Return data about a genre by name/title (e.g., “Thriller”)</td>
-          <td>/movies/genres/[genre]</td>
+          <td>/movies/genre/[Name]</td>
           <td>GET</td>
-          <td>/movies/genres/:genre</td>
+          <td>/movies/genre/:Name</td>
           <td>None</td>
           <td>A JSON object holding data about the movie genre, structured like:<br>
             <div style="text-indent: 1em;">{</div>
-              <div style="text-indent: 2em;">genre : "drama"</div>
-              <div style="text-indent: 2em;">genredes : "Thrillers are dark, engrossing, and suspenseful plot-driven stories. They very seldom include comedic elements."</div>
-              <div style="text-indent: 1em;">}</div></td>
+            <div style="text-indent: 2em;">"Name": "Drama",</div>
+            <div style="text-indent: 2em;">"Description": "Drama Films are serious presentations or stories with settings or life situations that portray realistic characters in conflict with either themselves, others, or forces of nature. A dramatic film shows us human beings at their best, their worst, and everything in-between. Each of the types of subject-matter themes have various kinds of dramatic plots."</div>
+            <div style="text-indent: 1em;">}</div></td>
         </tr>
         <tr>
           <td>Return data about a director (bio, birth year, death year) by name</td>
-          <td>/movies/directors/[director]</td>
+          <td>/movies/director/[Name]</td>
           <td>GET</td>
-          <td>/movies/directors/:director</td>
+          <td>/movies/director/:Name</td>
           <td>None</td>
           <td>A JSON object holding data about the movie director, structured like:<br>
             <div style="text-indent: 1em;">{</div>
-            <div style="text-indent: 2em;">name : "Frank Darabont"</div>
-            <div style="text-indent: 2em;">bio : "A lifelong horror fan who possessed great love for the genre and the works of Stephen King in particular, Frank Darabont's career as a writer and director yielded three Oscar nominations and worldwide acclaim."</div>
-            <div style="text-indent: 2em;">birth : "1959"</div>
-            <div style="text-indent: 2em;">death : ""</div>
+            <div style="text-indent: 2em;">"Name": "Frank Darabont",</div>
+            <div style="text-indent: 2em;">"Bio": "A lifelong horror fan who possessed great love for the genre and the works of Stephen King in particular, Frank Darabont's career as a writer and director yielded three Oscar nominations and worldwide acclaim.",</div>
+            <div style="text-indent: 2em;">"Birth": "1959"</div>
             <div style="text-indent: 1em;">}</div>
         </tr>
         <tr>
@@ -97,59 +101,96 @@
           <td>/users</td>
           <td>POST</td>
           <td>None</td>
-          <td>A JSON object holding data about the user to add, structed like:<br>
+          <td>A JSON object holding data about the user to add, structured like:<br>
             <div style="text-indent: 1em;">{</div>
-              <div style="text-indent: 2em;">name : "name"</div>
-              <div style="text-indent: 2em;">username : "username"</div>
-              <div style="text-indent: 2em;">email : "username@email.com"</div>
-              <div style="text-indent: 1em;">}</div>
+            <div style="text-indent: 2em;">"Username": "Sullivan",</div>
+            <div style="text-indent: 2em;">"Password": "woof",</div>
+            <div style="text-indent: 2em;">"Email": "iamadog@email.com",</div>
+            <div style="text-indent: 2em;">"Birthday": "05/11/2020"</div>
+            <div style="text-indent: 1em;">}</div>
           </td>
           <td>A JSON object holding data about the user that was added:<br>
             <div style="text-indent: 1em;">{</div>
-              <div style="text-indent: 2em;">name : "name"</div>
-              <div style="text-indent: 2em;">username : "username"</div>
-              <div style="text-indent: 2em;">email : "username@email.com"</div>
-              <div style="text-indent: 1em;">}</div>
+            <div style="text-indent: 2em;">"FavoriteMovies": [],</div>
+            <div style="text-indent: 2em;">"_id": "60a72aba6c1be8da63af48d0",</div>
+            <div style="text-indent: 2em;">"Username": "Sullivan",</div>
+            <div style="text-indent: 2em;">"Password": "woof",</div>
+            <div style="text-indent: 2em;">"Email": "iamadog@gmail.com",</div>
+            <div style="text-indent: 2em;">"__v": 0</div>
+            <div style="text-indent: 1em;">}</div>
           </td>
         </tr>
         <tr>
           <td>Allow users to update their user info</td>
           <td>/users/[username]</td>
           <td>PUT</td>
-          <td>/users/:username</td>
-          <td>None</td>
-          <td>A text message indicating that the user information has been updated</td>
+          <td>/users/:Username</td>
+          <td>A JSON object holding data about the user to update, structured like:<br>
+            <div style="text-indent: 2em;">"Username": "Sullivan",</div>
+            <div style="text-indent: 2em;">"Password": "woofwoof",</div>
+            <div style="text-indent: 2em;">"Email": "iamadog@gmail.com",</div>
+            <div style="text-indent: 2em;">"Birthday": "05/11/2020"</div>
+          </td>
+          <td>A JSON object holding data about the user that was updated:<br>
+            <div style="text-indent: 1em;">{</div>
+            <div style="text-indent: 2em;">"FavoriteMovies": [],</div>
+            <div style="text-indent: 2em;">"_id": "60a72aba6c1be8da63af48d0",</div>
+            <div style="text-indent: 2em;">"Username": "Sullivan",</div>
+            <div style="text-indent: 2em;">"Password": "woofwoof",</div>
+            <div style="text-indent: 2em;">"Email": "iamadog@gmail.com",</div>
+            <div style="text-indent: 2em;">"__v": 0</div>
+            <div style="text-indent: 1em;">}</div>
+          </td>
         </tr>
         <tr>
           <td>Allow users to add a movie to their list of favorites</td>
-          <td>/users/[username]/favorites</td>
+          <td>/users/[Username]/Movies/[movieID]</td>
           <td>POST</td>
-          <td>/users/:username/favorites</td>
-          <td>A JSON object holding data about the movie to add, structed like:<br>
+          <td>/users/:Username/Movies/:MovieID</td>
+          <td>None</td>
+          <td>A JSON object holding data about the user and their favorite movies, structured like:<br>
             <div style="text-indent: 1em;">{</div>
-              <div style="text-indent: 2em;">title : "movie"</div>
-              <div style="text-indent: 1em;">}</div>
+            <div style="text-indent: 2em;">"Favorite Movies": [</div>
+            <div style="text-indent: 2em;">"60a32300a71ba6a3ffb9d285",</div>
+            <div style="text-indent: 2em;">"60a31b03a71ba6a3ffb9d27e",/div>
+            <div style="text-indent: 2em;">"60a31c6ca71ba6a3ffb9d27f"</div>
+            <div style="text-indent: 1em;">],</div>
+            <div style="text-indent: 1em;">"_id":"60a32a68a71ba6a3ffb9d286",</div>
+            <div style="text-indent: 1em;">"Username":"username1",</div>
+            <div style="text-indent: 1em;">"Password":"password1",</div>
+            <div style="text-indent: 1em;">"Email":"username1@gmail.com",</div>
+            <div style="text-indent: 1em;">"Birthday":"1985-02-19T00:00:00.000Z"</div>
+            <div style="text-indent: 1em;">}</div>
           </td>
-          <td>A JSON object holding data about the movie that was added:
-            <div style="text-indent: 1em;">{</div>
-              <div style="text-indent: 2em;">title : "movie"</div>
-              <div style="text-indent: 1em;">}</div></td>
         </tr>
         <tr>
           <td>Allow users to remove a movie from their list of favorites</td>
-          <td>/users/[username]/favorites/[movie]</td>
+          <td>/users/[Username]/Movies/[movieID]</td>
           <td>DELETE</td>
-          <td>/users/:username/favorites/:title</td>
+          <td>/users/:Username/Movies/:MovieID</td>
           <td>None</td>
-          <td>A text message indicating the movie has been successfully removed from the list of favorites</td>
+          <td>A JSON object holding data about the user and their favorite movies, structured like:<br>
+            <div style="text-indent: 1em;">{</div>
+            <div style="text-indent: 2em;">"Favorite Movies": [</div>
+            <div style="text-indent: 2em;">"60a32300a71ba6a3ffb9d285",</div>
+            <div style="text-indent: 2em;">"60a31b03a71ba6a3ffb9d27e",/div>
+            <div style="text-indent: 2em;">"60a31c6ca71ba6a3ffb9d27f"</div>
+            <div style="text-indent: 1em;">],</div>
+            <div style="text-indent: 1em;">"_id":"60a32a68a71ba6a3ffb9d286",</div>
+            <div style="text-indent: 1em;">"Username":"username1",</div>
+            <div style="text-indent: 1em;">"Password":"password1",</div>
+            <div style="text-indent: 1em;">"Email":"username1@gmail.com",</div>
+            <div style="text-indent: 1em;">"Birthday":"1985-02-19T00:00:00.000Z"</div>
+            <div style="text-indent: 1em;">}</div>
+          </td>
         </tr>
         <tr>
           <td>Allow existing users to deregister</td>
-          <td>/users/[username]</td>
+          <td>/users/[Username]</td>
           <td>DELETE</td>
-          <td>/users/:username</td>
+          <td>/users/:Username</td>
           <td>None</td>
-          <td>A test message indicating the user has been successfully removed</td>
+          <td>A  message indicating the username has been successfully removed</td>
         </tr>
       </tbody>
 </body>
