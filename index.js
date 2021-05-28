@@ -1,6 +1,9 @@
 const express = require("express"),
    bodyParser = require("body-parser");
 
+const cors = require('cors');
+  app.use(cors());
+
 const morgan = require("morgan");
 const app = express();
 const mongoose = require("mongoose");
@@ -75,6 +78,7 @@ app.get("/movies/director/:Name", passport.authenticate('jwt', { session: false 
 
 //Allow new user to register
 app.post("/users", (req, res) => {
+  let hashedPassword = User.hashPassword(req.body.Password);
   Users.findOne({ Username: req.body.Username })
     .then((user) => {
       if (user) {
@@ -82,11 +86,11 @@ app.post("/users", (req, res) => {
       } else {
         Users.create({
             Username: req.body.Username,
-            Password: req.body.Password,
+            Password: hashedPassword,
             Email: req.body.Email,
-            Birthday: req.body.Birthing
+            Birthday: req.body.Birthday
           })
-          .then((user) =>{
+          .then((user) => {
             res.status(201).json(user) })
           .catch((error) => {
             console.error(error);
