@@ -1,40 +1,14 @@
-const express = require("express");
+const express = require("express"),
+  bodyParser = require("body-parser");
+
 const morgan = require("morgan");
-const bodyParser = require("body-parser");
+const app = express();
 const mongoose = require("mongoose");
 const Models = require("./models.js");
+
 const Movies = Models.Movie;
 const Users = Models.User;
-const cors = require("cors");
-const { check, validationResult } = require("express-validator");
-const app = express();
 
-let auth = require("./auth")(app);
-const passport = require("passport");
-require("./passport");
-
-const passport = require("passport");
-require("./passport");
-
-let allowedOrigins = ["http://localhost:8080", "http://testsite.com"];
-
-app.use(
-  cors({
-    origin: (origin, callback) => {
-      if (!origin) return callback(null, true);
-      if (allowedOrigins.indexOf(origin) === -1) {
-        // If a specific origin isn’t found on the list of allowed origins
-        let message =
-          "The CORS policy for this application doesn’t allow access from origin " +
-          origin;
-        return callback(new Error(message), false);
-      }
-      return callback(null, true);
-    },
-  })
-);
-
-//Local DB
 //mongoose.connect("mongodb://localhost:27017/myFlixDB", { useNewUrlParser: true, useUnifiedTopology: true });
 
 mongoose.connect(process.env.CONNECTION_URI, {
@@ -45,6 +19,16 @@ mongoose.connect(process.env.CONNECTION_URI, {
 app.use(bodyParser.json());
 app.use(morgan("common"));
 app.use(express.static("public"));
+
+const cors = require("cors");
+app.use(cors());
+
+const { check, validationResult } = require("express-validator");
+
+let auth = require("./auth")(app);
+
+const passport = require("passport");
+require("./passport");
 
 //GET requests
 app.get("/", (req, res) => {
@@ -199,25 +183,8 @@ app.get(
 //Allow user to update their info
 app.put(
   "/users/:Username",
-  [
-    check("Username", "Username is required").isLength({ min: 5 }),
-    check(
-      "Username",
-      "Username contains non alphanumeric characters - not allowed."
-    ).isAlphanumeric(),
-    check("Password", "Password is required").not().isEmpty(),
-    check("Email", "Email does not appear to be valid").isEmail(),
-  ],
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    let errors = validationResult(req);
-
-    if (!errors.isEmpty()) {
-      return res.status(422).json({ errors: errors.array() });
-    }
-
-    let hashedPassword = Users.hashPassword(req.body.Password);
-
     Users.findOneAndUpdate(
       { Username: req.params.Username },
       {
@@ -228,7 +195,7 @@ app.put(
           Birthday: req.body.Birthday,
         },
       },
-      { new: true },
+      { new: true }, //This line makes sure that the updated document is returned
       (err, updatedUser) => {
         if (err) {
           console.error(err);
