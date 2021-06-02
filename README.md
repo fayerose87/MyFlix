@@ -1,7 +1,7 @@
-## myFlix
+# myFlix
 A server-side component of a “movies” web application. The web application provides users with access to information about different movies, directors, and genres. Users can sign up, update their personal information, and create a list of their favorite movies.
 
-# Key Features
+## Key Features
 - Return a list of all movies to the user
 - Return data (description, genre, director, image URL, whether it’s featured or not) about a single movie by title to the user
 - Return data about a genre (description) by name/title (e.g., “Thriller”)
@@ -12,14 +12,14 @@ A server-side component of a “movies” web application. The web application p
 - Allow users to remove a movie from their list of favorites
 - Allow existing users to deregister
 
-# Built With
+## Built With
 - JavaScript
 - Node.js
 - Express
 - MongoDB
 - Visual Studio Code
 
-# Dependencies
+## Dependencies
 - bcrypt
 - body-parser
 - cors
