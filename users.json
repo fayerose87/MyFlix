@@ -1,0 +1,6 @@
+{"_id":{"$oid":"60a32a68a71ba6a3ffb9d286"},"Username":"username1","Password":"password1","Email":"username1@gmail.com","Birthday":{"$date":"1985-02-19T00:00:00Z"},"FavoriteMovies":[{"$oid":"60a32300a71ba6a3ffb9d285"},{"$oid":"60a31b03a71ba6a3ffb9d27e"},{"$oid":"60a31faea71ba6a3ffb9d282"}]}
+{"_id":{"$oid":"60a32b1ca71ba6a3ffb9d287"},"Username":"username2","Password":"password2","Email":"username2@gmail.com","Birthday":{"$date":"1987-10-17T00:00:00Z"},"FavoriteMovies":[{"$oid":"60a31d49a71ba6a3ffb9d280"},{"$oid":"60a31e9da71ba6a3ffb9d281"}]}
+{"_id":{"$oid":"60a32bc7a71ba6a3ffb9d289"},"Username":"username4","Password":"password4","Email":"username4@gmail.com","Birthday":{"$date":{"$numberLong":"-423705600000"}},"FavoriteMovies":[{"$oid":"60a32219a71ba6a3ffb9d284"},{"$oid":"60a32300a71ba6a3ffb9d285"}]}
+{"_id":{"$oid":"60a725f850409cd1ec81a94d"},"FavoriteMovies":[],"Username":"karina","Password":"1234","Email":"karinamarie@gmail.com","__v":0,"Birthday":{"$date":"1995-03-03T06:00:00Z"}}
+{"_id":{"$oid":"60a72aba6c1be8da63af48d0"},"FavoriteMovies":[],"Username":"Sullivan","Password":"woof","Email":"iamadog@gmail.com","__v":0,"Birthday":{"$date":"2001-05-11T00:00:00Z"}}
+{"_id":{"$oid":"60aef745dfb3d47eded9a0c3"},"FavoriteMovies":[],"Username":"Lola","Password":"Iris","Email":"iamacat2@gmail.com","__v":0,"Birthday":{"$date":"2009-04-27T00:00:00Z"}}
